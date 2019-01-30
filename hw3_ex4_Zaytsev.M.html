@@ -1,0 +1,24 @@
+<meta charset="UTF-8">
+
+<script>
+    'use strict';
+
+    // 4*. С помощью цикла while вывести все простые числа в промежутке от 0 до 100 (можно без оптимизаций).
+
+    let myNumber = 0;
+
+    while (myNumber <= 100) {
+        let delNumber = 2, countDels = 0;
+        while (delNumber <= myNumber) {
+            if (myNumber % delNumber === 0) {
+                countDels++;
+            }
+            delNumber++;
+        }
+        if (countDels === 1) {
+            console.log(myNumber);
+        }
+        myNumber++;
+    }
+
+</script>
