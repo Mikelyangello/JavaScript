@@ -27,14 +27,16 @@
 
     const arrDouble = arr.slice();
 
-    let maximum = 0, index = 0;
+    let maximum, index = 0;
 
     for (const ind in arr) {
         let summ = 0;
         for (const key in arr[ind]) {
             summ += arr[ind][key];
         }
-        if (summ > maximum) {
+        if (!maximum) {
+            maximum = summ;
+        } else if (summ > maximum) {
             maximum = summ;
             index = ind;
         }
