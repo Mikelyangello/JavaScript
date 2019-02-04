@@ -1,0 +1,49 @@
+<meta charset="UTF-8">
+
+<script>
+    'use strict';
+
+    /* 1. Написать функцию, преобразующую число в объект. Передавая на вход число в диапазоне [0, 999],
+    мы должны получить на выходе объект, в котором в соответствующих свойствах описаны разряды числа:
+     - единицы (в свойстве firstDigit)
+     - десятки (в свойстве secondDigit)
+     - сотни (в свойстве thirdDigit)
+    Например, для числа 45 мы должны получить следующий объект:
+
+    ```
+    {
+      firstDigit: 5,
+      secondDigit: 4,
+      thirdDigit: 0,
+    }
+    ```
+
+    Если число было передано вне [0, 999] диапазона, не целое число или вообще не число,
+    необходимо выдать соответствующее сообщение с помощью console.log и вернуть пустой объект.
+    */
+
+    /**
+     * Функция разделяет введенное целое число в заданном диапазоне на цифры.
+     * @param {int} min - Первое число, обозначающее НИЖНЮЮ границу диапазона.
+     * @param {int} max - Второе число, обозначающее ВЕРХНЮЮ границу диапазона.
+     * @returns {Object} Возвращает объект с параметрами-цифрами.
+     */
+    function separator(min=0, max=999) {
+        const inpt = parseFloat(prompt(`Введите целое число в диапазоне\n[${min}, ${max}]: `));
+        if (Number.isInteger(inpt) && inpt >= min && inpt <= max) {
+            const firstDigit = inpt % 10;
+            const secondDigit = Math.floor(inpt / 10 % 10);
+            const thirdDigit = Math.floor(inpt / 100 % 10);
+            return {
+                firstDigit,
+                secondDigit,
+                thirdDigit,
+            };
+        }
+        console.log('Была допущена ошибка при вводе');
+        return {};
+    }
+
+    console.log(separator());
+
+</script>
