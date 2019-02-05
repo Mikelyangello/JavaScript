@@ -23,27 +23,51 @@
     */
 
     /**
-     * Функция разделяет введенное целое число в заданном диапазоне на цифры.
-     * @param {int} min - Первое число, обозначающее НИЖНЮЮ границу диапазона.
-     * @param {int} max - Второе число, обозначающее ВЕРХНЮЮ границу диапазона.
+     * Функция разделяет целое число в диапазоне 0-999 на цифры.
+     * @param {int} input - Само число, которое необходимо разделить.
      * @returns {Object} Возвращает объект с параметрами-цифрами.
      */
-    function separator(min=0, max=999) {
-        const inpt = parseFloat(prompt(`Введите целое число в диапазоне\n[${min}, ${max}]: `));
-        if (Number.isInteger(inpt) && inpt >= min && inpt <= max) {
-            const firstDigit = inpt % 10;
-            const secondDigit = Math.floor(inpt / 10 % 10);
-            const thirdDigit = Math.floor(inpt / 100 % 10);
-            return {
-                firstDigit,
-                secondDigit,
-                thirdDigit,
-            };
-        }
-        console.log('Была допущена ошибка при вводе');
-        return {};
+    function separator(input) {
+		const firstDigit = input % 10;
+		const secondDigit = Math.floor(input / 10 % 10);
+		const thirdDigit = Math.floor(input / 100 % 10);
+		return {
+			firstDigit,
+			secondDigit,
+			thirdDigit,
+		};
     }
-
-    console.log(separator());
+	
+	/**
+     * Функция проверяет ввод, что он является целым числом из заданного диапазона.
+	 * @param {int} input - Ввод, который необходимо проверить на условия.
+     * @param {int} min - Первое число, обозначающее НИЖНЮЮ границу диапазона.
+     * @param {int} max - Второе число, обозначающее ВЕРХНЮЮ границу диапазона.
+     * @returns {boolean} Возвращает true/false в зависимости от попадания в условия.
+     */
+	function checkInput(input, min, max) {
+        if (Number.isInteger(input) && input >= min && input <= max) {
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+     * Функция создает переменную с вводом и запускает остальные функции, согласно процедуре
+     * @param {int} min - Первое число, обозначающее НИЖНЮЮ границу диапазона.
+     * @param {int} max - Второе число, обозначающее ВЕРХНЮЮ границу диапазона.
+     * @returns {*} Возвращает результат функции separator() или пустой объект.
+     */
+	function procedureRun(min=0, max=999) {
+		const input = parseFloat(prompt(`Введите целое число в диапазоне\n[${min}, ${max}]:`));
+		if (checkInput(input, min, max)) {
+			return separator(input);
+		}
+		console.log(`Была допущена ошибка при вводе. Вы ввели:\n${input}`);
+		return {};
+	}
+	
+	// выводим результат работы функции в консоль
+    console.log(procedureRun());
 
 </script>
